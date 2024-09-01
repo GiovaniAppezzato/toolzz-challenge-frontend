@@ -1,0 +1,118 @@
+{
+  "translation": {
+    "fields": {
+      "name": "Nome",
+      "email": "E-mail",
+      "password": "Senha",
+      "confirmPassword": "Confirmar Senha",
+      "optnional": "(Opcional)"
+    },
+    "pages": {
+      "signIn": {
+        "title": "Entrar na Plataforma",
+        "description": "Bem vindo de volta!",
+        "noAccount": "Não tem conta?",
+        "doSignUp": "Crie uma",
+        "access": "Acessar"
+      },
+      "signUp": {
+        "title": "Cadastre sua conta",
+        "description": "Por favor preencha o formulário abaixo para criar sua conta.",
+        "create": "Cadastrar",
+        "alreadyHave": "Ja possui uma conta?",
+        "doSignIn": "Faça o login"
+      },
+      "chat": {
+        "title": "Chat",
+        "notSelected": "Nenhum usuário selecionado",
+        "searchMessages": "Pesquisar mensagens"
+      },
+      "createUser": {
+        "title": "Criar Usuário",
+        "cardTitle": "Criar Usuário",
+        "cardDescription": "Adicione um novo usuário para conversar.",
+        "save": "Salvar",
+        "userCreated": "Usuário criado com sucesso."
+      },
+      "editUser": {
+        "title": "Editar usuário",
+        "cardTitle": "Editar usuário",
+        "cardDescription": "Edite um usuário do sistema.",
+        "changePassword": "Alterar senha (Opcional)",
+        "save": "Salvar",
+        "userEdited": "Usuário editado com sucesso."
+      }
+    },
+    "components": {
+      "chat": {
+        "conversationList": {
+          "title": "Usuários disponíveis",
+          "search": "Nome ou e-mail",
+          "noResults": "Nenhum usuário encontrado",
+          "noMessages": "Nenhuma mensagem"
+        },
+        "prompt": {
+          "placeholder": "Digite sua nova mensagem",
+          "emojiSearchPlaceholder": "Pesquisar emoji",
+          "categories": {
+            "suggested": "Recentes",
+            "smileysPeople": "Sorrisos e Pessoas",
+            "animalsNature": "Animais e Natureza",
+            "foodDrink": "Comida e Bebida",
+            "travelPlaces": "Viagens e Lugares",
+            "activities": "Atividades",
+            "objects": "Objetos",
+            "symbols": "Símbolos",
+            "flags": "Bandeiras"
+          }
+        }
+      },
+      "dropdownHeader": {
+        "title": "Logado como:",
+        "logout": "Sair",
+        "profile": "Perfil"
+      },
+      "footer": {
+        "developedBy": "© 2024 Desenvolvido por "
+      }
+    },
+    "errors": {
+      "yup": {
+        "required": "Campo é obrigatório",
+        "min": "Deve conter no mínimo ${min} caracteres",
+        "max": "Deve conter no máximo ${max} caracteres",
+        "email": "Deve ser um e-mail válido",
+        "url": "Deve ser uma URL válida",
+        "matches": "Deve corresponder ao seguinte padrão: ${regex}",
+        "integer": "Deve ser um número inteiro",
+        "passwordsMustMatch": "As senhas devem ser iguais",
+        "checkAllFields": "Verifique todos os campos",
+        "passwordsDontMatch": "As senhas devem ser iguais"
+      },
+      "404": {
+        "title": "Página não encontrada",
+        "message": "A página que você está procurando não existe."
+      },
+      "401": {
+        "title": "Não autorizado",
+        "message": "Você não está autorizado."
+      },
+      "500": {
+        "title": "Erro interno do servidor",
+        "message": "Ocorreu um erro interno no servidor."
+      },
+      "503": {
+        "title": "Serviço indisponível",
+        "message": "O serviço está temporariamente indisponível."
+      },
+      "504": {
+        "title": "Tempo limite de gateway",
+        "message": "O gateway não recebeu uma resposta oportuna do servidor ou aplicação remota."
+      },
+      "default": {
+        "title": "Ocorreu um erro",
+        "message": "Ocorreu um erro, por favor tente novamente mais tarde."
+      }
+    }
+  }
+}

@@ -1,0 +1,118 @@
+{
+  "translation": {
+    "fields": {
+      "name": "Name",
+      "email": "E-mail",
+      "password": "Password",
+      "confirmPassword": "Confirm Password",
+      "optnional": "(Optional)"
+    },
+    "pages": {
+      "signIn": {
+        "title": "Sign In to the Platform",
+        "description": "Welcome back!",
+        "noAccount": "Don't have an account?",
+        "doSignUp": "Create one",
+        "access": "Sign In"
+      },
+      "signUp": {
+        "title": "Register Your Account",
+        "description": "Please fill out the form below to create your account.",
+        "create": "Register",
+        "alreadyHave": "Already have an account?",
+        "doSignIn": "Log in"
+      },
+      "chat": {
+        "title": "Chat",
+        "notSelected": "No user selected",
+        "searchMessages": "Search messages"
+      },
+      "createUser": {
+        "title": "Create User",
+        "cardTitle": "Create User",
+        "cardDescription": "Add a new user to chat with.",
+        "save": "Save",
+        "userCreated": "User successfully created."
+      },
+      "editUser": {
+        "title": "Edit User",
+        "cardTitle": "Edit User",
+        "cardDescription": "Edit a user in the system.",
+        "changePassword": "Change password (Optional)",
+        "save": "Save",
+        "userEdited": "User successfully edited."
+      }
+    },
+    "components": {
+      "chat": {
+        "conversationList": {
+          "title": "Available Users",
+          "search": "Name or e-mail",
+          "noResults": "No users found",
+          "noMessages": "No messages"
+        },
+        "prompt": {
+          "placeholder": "Enter your new message",
+          "emojiSearchPlaceholder": "Search emoji",
+          "categories": {
+            "suggested": "Recent",
+            "smileysPeople": "Smileys & People",
+            "animalsNature": "Animals & Nature",
+            "foodDrink": "Food & Drink",
+            "travelPlaces": "Travel & Places",
+            "activities": "Activities",
+            "objects": "Objects",
+            "symbols": "Symbols",
+            "flags": "Flags"
+          }
+        }
+      },
+      "dropdownHeader": {
+        "title": "Logged in as:",
+        "logout": "Log out",
+        "profile": "Profile"
+      },
+      "footer": {
+        "developedBy": "© 2024 Developed by "
+      }
+    },
+    "errors": {
+      "yup": {
+        "required": "Field is required",
+        "min": "Must be at least ${min} characters",
+        "max": "Must be at most ${max} characters",
+        "email": "Must be a valid email",
+        "url": "Must be a valid URL",
+        "matches": "Must match the following pattern: ${regex}",
+        "integer": "Must be an integer",
+        "passwordsMustMatch": "Passwords must match",
+        "checkAllFields": "Please check all fields",
+        "passwordsDontMatch": "Passwords must match"
+      },
+      "404": {
+        "title": "Page Not Found",
+        "message": "The page you are looking for does not exist."
+      },
+      "401": {
+        "title": "Unauthorized",
+        "message": "You are not authorized."
+      },
+      "500": {
+        "title": "Internal Server Error",
+        "message": "An internal server error occurred."
+      },
+      "503": {
+        "title": "Service Unavailable",
+        "message": "The service is temporarily unavailable."
+      },
+      "504": {
+        "title": "Gateway Timeout",
+        "message": "The gateway did not receive a timely response from the server or remote application."
+      },
+      "default": {
+        "title": "An Error Occurred",
+        "message": "An error occurred, please try again later."
+      }
+    }
+  }
+}
