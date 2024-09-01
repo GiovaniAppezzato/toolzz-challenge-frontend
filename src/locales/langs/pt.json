@@ -28,8 +28,8 @@
         "searchMessages": "Pesquisar mensagens"
       },
       "createUser": {
-        "title": "Criar Usuário",
-        "cardTitle": "Criar Usuário",
+        "title": "Criar usuário",
+        "cardTitle": "Criar usuário",
         "cardDescription": "Adicione um novo usuário para conversar.",
         "save": "Salvar",
         "userCreated": "Usuário criado com sucesso."

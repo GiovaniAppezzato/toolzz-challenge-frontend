@@ -28,15 +28,15 @@
         "searchMessages": "Search messages"
       },
       "createUser": {
-        "title": "Create User",
-        "cardTitle": "Create User",
+        "title": "Create user",
+        "cardTitle": "Create user",
         "cardDescription": "Add a new user to chat with.",
         "save": "Save",
         "userCreated": "User successfully created."
       },
       "editUser": {
-        "title": "Edit User",
-        "cardTitle": "Edit User",
+        "title": "Edit user",
+        "cardTitle": "Edit user",
         "cardDescription": "Edit a user in the system.",
         "changePassword": "Change password (Optional)",
         "save": "Save",
