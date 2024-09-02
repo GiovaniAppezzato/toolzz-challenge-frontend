@@ -10,7 +10,6 @@ import useAuth from "@/hooks/useAuth";
 import { Card, Messages, Prompt, ConversationList, Spinner, Input } from "@/components";
 import { IMessage } from "@/interfaces/message";
 import { IUser } from "@/interfaces/user";
-import { debounce } from "@/utilities/utils";
 
 interface IMessageReceived {
   message: IMessage;
@@ -95,7 +94,7 @@ export default function ChatPage() {
     }
 
     if(!isSelectingUser && selectedUser) {
-      debounce(searchMessages, 300)();
+      searchMessages();
     }
   }, [searchMessagesValue]);
 
