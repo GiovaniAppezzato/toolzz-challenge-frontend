@@ -32,7 +32,7 @@ Após ter configurado o ambiente, siga as etapas para instalar o projeto:
 1. Clone o repositório::
 
 ```
-git clone https://github.com/GiovaniAppezzato/corelab-challenge-web-app-php
+git clone https://github.com/GiovaniAppezzato/toolzz-challenge-frontend
 ```
 
 2. Navegue até a pasta do projeto e execute o comando abaixo para instalar todas as dependências necessárias:
@@ -52,7 +52,7 @@ cp .env.example .env
 ```
 # Example
 NEXT_PUBLIC_API_PREFIX="/api"
-NEXT_PUBLIC_API_URL="http://127.0.0.1:8001"
+NEXT_PUBLIC_API_URL="http://127.0.0.1:8000"
 
 NEXT_PUBLIC_PUSHER_APP_KEY="your-pusher-app-key"
 NEXT_PUBLIC_PUSHER_APP_CLUSTER="your-pusher-app-cluster"
