@@ -230,8 +230,8 @@ export default function ChatPage() {
   return (
     <PrivateLayout title={titlePage}>
       <audio src={`${process.env.NEXT_PUBLIC_APP_URL}/sound_chat.mp3`}></audio>
-      <Card className="h-[calc(100vh-231.5px)]">
-        <Card.Body className="flex p-4">
+      <Card className="md:h-[calc(100vh-231.5px)]">
+        <Card.Body className="flex flex-col md:flex-row p-4">
           {!isLoading ? (
             <Fragment>
               <ConversationList 
@@ -243,9 +243,9 @@ export default function ChatPage() {
               {!isSelectingUser ? (
                 <Fragment>
                   {selectedUser ? (
-                    <div className="flex-grow pl-4">
+                    <div className="flex-grow md:pl-4">
                       <header className="flex items-center justify-between px-4 py-2 mb-4 border-b border-gray-200 dark:border-zinc-700">
-                        <h1 className="text font-medium">{selectedUser.name}</h1>
+                        <h1 className={`text font-medium ${isShowingSearchMessages ? 'hidden md:block' : ''}`}>{selectedUser.name}</h1>
                         <div className="flex items-center">
                           {isShowingSearchMessages && (
                             <Input
@@ -288,19 +288,19 @@ export default function ChatPage() {
                       />
                     </div>
                   ) : (
-                    <div className="flex-grow flex justify-center items-center pl-4">
+                    <div className="flex-grow flex justify-center items-center p-6 md:pl-4">
                       {t("pages.chat.notSelected")}
                     </div>
                   )}
                 </Fragment>
               ) : (
-                <div className={`flex flex-grow justify-center items-center`}>
+                <div className={`flex flex-grow justify-center items-center p-6`}>
                   <Spinner className="h-5 w-5" />  
                 </div>  
               )}  
             </Fragment>
           ) : (
-            <div className={`flex w-full justify-center items-center`}>
+            <div className={`flex w-full justify-center items-center p-6`}>
               <Spinner className="h-5 w-5" />  
             </div>  
           )}

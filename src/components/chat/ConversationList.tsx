@@ -16,7 +16,8 @@ export default function ConversationList({
   selectedUser,
   handleSelectUser,
 }: IProps) {
-  const [search, setSearch] = useState<string>('');
+  const [search, setSearch] = useState('');
+
   const filteredUsers = users.filter(user => {
     return user.name.toLowerCase().includes(search.toLowerCase().trim()) || user.email.toLowerCase().includes(search.toLowerCase().trim());
   });
@@ -51,7 +52,7 @@ export default function ConversationList({
   }
 
   return (
-    <div className="w-1/4 border-r border-gray-200 h-full pr-4 dark:border-zinc-700">
+    <div className="w-full md:border-r md:border-gray-200 dark:border-zinc-700 md:w-1/4 md:h-full md:pr-4">
       <header className="py-4 px-2">
         <div className="flex items-center justify-between">
           <h1 className="text font-medium">
@@ -72,7 +73,7 @@ export default function ConversationList({
         />
       </header>
       {filteredUsers.length > 0 ? (
-        <div>
+        <div className="max-h-72 md:h-[calc(100vh-381.5px)] md:max-h-full overflow-y-auto">
           {filteredUsers.map((user) => <UserForConversation key={user.id} user={user} />)}
         </div>  
       ) : (

@@ -122,7 +122,7 @@ export default function EditUserPage() {
                 <div className="w-full flex flex-wrap justify-center items-start sm:pl-4 md:flex-nowrap">
                   <div className="relative w-max">
                     <Avatar src={values.photo} className="!w-24 !h-24 !text-xl" />
-                    <label htmlFor='photo' className="button-icon button-primary button-icon-lg cursor-pointer rounded-full absolute -bottom-0.5 -right-0.5 shadow-none border-[3px] border-white">
+                    <label htmlFor='photo' className="button-icon button-primary button-icon-lg cursor-pointer rounded-full absolute -bottom-0.5 -right-0.5 shadow-none border-[3px] border-navbar">
                       <FaCamera size={12} />
                     </label>
                     <input 

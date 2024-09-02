@@ -33,10 +33,10 @@ export default function Header({ title }: { title?: string }) {
             </div>
 
             <div className="flex items-center gap-1 ms-6">
-              <button className="p-2 flex items-center rounded-full foxu hover:bg-gray-100 focus:outline-none focus:bg-gray-200 dark:hover:bg-white/5" onClick={handleChangeLanguage}>
+              <button className="p-2 flex items-center rounded-full foxu hover:bg-gray-100 focus:outline-none dark:hover:bg-white/5" onClick={handleChangeLanguage}>
                 <img className="w-6 h-6 rounded-md" src={language === 'en' ? usSvg.src : brSvg.src} alt="flag" />
               </button>
-              <button className="p-2 flex items-center rounded-full hover:bg-gray-100 focus:outline-none focus:bg-gray-200 dark:hover:bg-white/5" onClick={handleChangeTheme}>
+              <button className="p-2 flex items-center rounded-full hover:bg-gray-100 focus:outline-none dark:hover:bg-white/5" onClick={handleChangeTheme}>
                 {theme !== 'light' ? <MdDarkMode size={24} /> : <MdLightMode size={24} />}
               </button>
               <DropdownHeader />
