@@ -246,7 +246,7 @@ export default function ChatPage() {
 
   return (
     <PrivateLayout title={titlePage}>
-      <audio src={`${process.env.NEXT_PUBLIC_APP_URL}/sound_chat.mp3`}></audio>
+      <audio src={`/sound_chat.mp3`}></audio>
       <Card className="md:h-[calc(100vh-231.5px)]">
         <Card.Body className="flex flex-col md:flex-row p-4">
           {!isLoading ? (
