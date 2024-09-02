@@ -100,6 +100,8 @@ export default function ChatPage() {
       .private(`users.${authenticatedUser.id}`)
       .listen(".message.received", (e: IMessageReceived) => {
         const { message } = e;
+
+        updateLastMessageByUserId(message.sender_id, message);
         
         // Check if message is from selected user
         if(selectedUserRef.current && message.sender_id == selectedUserRef.current.id) {
@@ -198,8 +200,6 @@ export default function ChatPage() {
     }
   }
 
-  
-
   function incrementUnreadMessagesCount(userId: string|number) {
     setUsers(prev => prev.map(u => {
       if(u.id === userId) {
@@ -213,6 +213,18 @@ export default function ChatPage() {
 
     // Move user to the top of the list
     setUsers(prev => [prev.find(u => u.id === userId)!, ...prev.filter(u => u.id !== userId)]);
+  }
+
+  function updateLastMessageByUserId(userId: string|number, message: IMessage) {
+    setUsers(prev => prev.map(u => {
+      if(u.id === userId) {
+        return {
+          ...u,
+          last_message: message
+        }
+      }
+      return u;
+    }))
   }
 
   return (
@@ -232,7 +244,7 @@ export default function ChatPage() {
                 <Fragment>
                   {selectedUser ? (
                     <div className="flex-grow pl-4">
-                      <header className="flex items-center justify-between px-4 py-2 mb-4 border-b border-gray-200">
+                      <header className="flex items-center justify-between px-4 py-2 mb-4 border-b border-gray-200 dark:border-zinc-700">
                         <h1 className="text font-medium">{selectedUser.name}</h1>
                         <div className="flex items-center">
                           {isShowingSearchMessages && (
@@ -247,8 +259,8 @@ export default function ChatPage() {
                           )}
                           <button 
                             className={`
-                              w-10 h-10 min-w-10 min-h-10 rounded-full flex items-center justify-center transition hover:bg-gray-100
-                              ${isShowingSearchMessages ? '!bg-gray-100' : ''}
+                              w-10 h-10 min-w-10 min-h-10 rounded-full flex items-center justify-center transition focus:outline-none hover:bg-gray-100 dark:hover:bg-white/5
+                              ${isShowingSearchMessages ? '!bg-gray-100 dark:!bg-white/5' : ''}
                             `}
                             onClick={() => {
                               setIsShowingSearchMessages(!isShowingSearchMessages)

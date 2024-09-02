@@ -13,7 +13,8 @@
         "description": "Welcome back!",
         "noAccount": "Don't have an account?",
         "doSignUp": "Create one",
-        "access": "Sign In"
+        "access": "Sign In",
+        "invalidCredentials": "Invalid credentials"
       },
       "signUp": {
         "title": "Register Your Account",

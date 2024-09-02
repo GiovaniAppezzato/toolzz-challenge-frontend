@@ -23,8 +23,7 @@ export default function DropdownHeader() {
     <div className="relative">
       <span className="inline-flex rounded-md">
         <button 
-          type="button" 
-          className="inline-flex items-center gap-2 px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md hover:text-gray-700"
+          className="inline-flex items-center gap-2 px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md dark:hover:text-zinc-300"
           onClick={() => setIsOpen(!isOpen)}
         >
           <Avatar src={user.photo ? user.photo.name : undefined} />
@@ -52,11 +51,11 @@ export default function DropdownHeader() {
                     {user?.email} 
                   </div>
                 </header>
-                <Link href={`/users/${user?.id}/edit`} className="relative overflow-hidden w-full flex items-center px-4 py-2 transition hover:bg-gray-100 focus:bg-gray-200">
+                <Link href={`/users/${user?.id}/edit`} className="relative overflow-hidden w-full flex items-center px-4 py-2 transition hover:bg-gray-100 dark:hover:bg-white/5">
                   <MdPerson size={18} className="mr-2" />
                   {t("components.dropdownHeader.profile")}
                 </Link>
-                <button className="relative border-t overflow-hidden w-full flex items-center px-4 py-2 transition hover:bg-gray-100 focus:bg-gray-200" onClick={handleSignOut}>
+                <button className="relative border-t overflow-hidden w-full flex items-center px-4 py-2 transition hover:bg-gray-100 dark:border-zinc-700 dark:hover:bg-white/5" onClick={handleSignOut}>
                   <MdOutlinePowerSettingsNew size={18} className="mr-2" />
                   {t("components.dropdownHeader.logout")}
                 </button>

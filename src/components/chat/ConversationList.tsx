@@ -27,12 +27,18 @@ export default function ConversationList({
     const hasUnreadMessages = user.unread_messages_count && user.unread_messages_count > 0;
 
     return (
-      <div onClick={() => handleSelectUser(user)} className={`flex items-center mb-2 cursor-pointer p-2 rounded-lg hover:bg-gray-50 ${selectedUser && user.id === selectedUser.id ? '!bg-gray-100' : ''}`}>
+      <div 
+        onClick={() => handleSelectUser(user)} 
+        className={`
+          flex items-center mb-2 cursor-pointer p-2 rounded-lg hover:bg-gray-50 dark:hover:bg-white/5
+          ${selectedUser && user.id === selectedUser.id ? '!bg-gray-100 dark:!bg-white/5' : ''}
+        `}
+      >
         <Avatar src={user.photo ? user.photo.name : undefined} className="mr-2" />
         <div className={`flex-grow ${hasUnreadMessages ? 'max-w-[calc(100%-75px)]' : 'max-w-[calc(100%-48px)]'}`}>
           <h2 className="w-fulltext-sm font-semibold truncate">{user.name}</h2>
-          <p className="w-full text-xs text-gray-600 truncate">
-            {user.last_message || t("components.chat.conversationList.noMessages")}
+          <p className="w-full text-xs truncate">
+            {user.last_message ? user.last_message.content : t("components.chat.conversationList.noMessages")}
           </p>
         </div>
         {hasUnreadMessages ? (
@@ -45,7 +51,7 @@ export default function ConversationList({
   }
 
   return (
-    <div className="w-1/4 border-r border-gray-200 h-full pr-4">
+    <div className="w-1/4 border-r border-gray-200 h-full pr-4 dark:border-zinc-700">
       <header className="py-4 px-2">
         <div className="flex items-center justify-between">
           <h1 className="text font-medium">

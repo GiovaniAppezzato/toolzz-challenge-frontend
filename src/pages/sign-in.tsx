@@ -38,6 +38,8 @@ export default function SignInPage() {
       } catch (error) {
         if (error instanceof yup.ValidationError) {
           ToastService.error(`${error.params?.label}: ${error.message}`);
+        } else {
+          ToastService.error(t("pages.signIn.invalidCredentials"));
         }
       } finally {
         setLoading(false);

@@ -46,7 +46,7 @@ export default function Prompt({
         setMessages(prev => [...prev, message]);
         setValue('');
 
-        const updatedSelectedUser = { ...selectedUser, last_message: message.content };
+        const updatedSelectedUser = { ...selectedUser, last_message: message };
 
         if (users.find(user => user.id === selectedUser.id)) {
           // Update the last_message of the selected user and move them to the top of the list

@@ -13,7 +13,8 @@
         "description": "Bem vindo de volta!",
         "noAccount": "Não tem conta?",
         "doSignUp": "Crie uma",
-        "access": "Acessar"
+        "access": "Acessar",
+        "invalidCredentials": "Credenciais inválidas"
       },
       "signUp": {
         "title": "Cadastre sua conta",

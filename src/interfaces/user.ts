@@ -9,5 +9,5 @@ export interface IUser {
   created_at: string;
   updated_at: string;
   unread_messages_count?: number;
-  last_message?: string;
+  last_message?: IMessage;
 }

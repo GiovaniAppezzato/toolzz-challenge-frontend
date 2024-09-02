@@ -23,8 +23,8 @@ const PrivateLayout = ({ children, title, withoutFooter = false }: IProps) => {
   return isAuthenticated ? (
     <>
       <Head>
-        <title>{title ? `${title} | Toolzz`  : 'Toolzz'}</title>
-        <meta property="og:title" content="Toolzz challenge" key="title" />
+        <title>Toolzz | Giovani Appezzato</title>
+        <meta property="og:title" content="Toolzz | Giovani Appezzato" key="title" />
       </Head>
       <div className="min-h-screen flex flex-col">
         <Header title={title} />
