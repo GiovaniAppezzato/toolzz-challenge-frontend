@@ -18,7 +18,6 @@ export default class UserService {
     return api.get<IGetUserResponse>(`/users/${id}`);
   }
 
-
   static async create(params: ICreateUserParams) {
     return api.post<ICreateUserResponse>("/users", params);
   }

@@ -1,4 +1,4 @@
-import { Fragment, useState, useEffect, useRef, ChangeEvent } from "react";
+import { Fragment, useState, useEffect, useRef } from "react";
 import { useRouter } from "next/router";
 import { useTranslation } from 'react-i18next';
 import { IoSearchOutline } from "react-icons/io5";
@@ -10,6 +10,7 @@ import useAuth from "@/hooks/useAuth";
 import { Card, Messages, Prompt, ConversationList, Spinner, Input } from "@/components";
 import { IMessage } from "@/interfaces/message";
 import { IUser } from "@/interfaces/user";
+import { debounce } from "@/utilities/utils";
 
 interface IMessageReceived {
   message: IMessage;
@@ -18,12 +19,12 @@ interface IMessageReceived {
 export default function ChatPage() {
   const [isLoading, setIsLoading] = useState(true);
   const [isSelectingUser, setIsSelectingUser] = useState(false);
-  const [isGettingMessages, setIsGettingMessages] = useState(false);
-  const [isShowingSearchMessages, setIsShowingSearchMessages] = useState(false);
+  const [isGettingMoreMessages, setIsGettingMoreMessages] = useState(false);
+  const [isSearchingMessages, setIsSearchingMessages] = useState(false);
+  const [isShowingSearchInput, setIsShowingSearchInput] = useState(false);
   const [lastMessageReceived, setLastMessageReceived] = useState<IMessage|null>(null);
   const [lastMessageSent, setLastMessageSent] = useState<IMessage|null>(null);
   const [searchMessagesValue, setSearchMessagesValue] = useState('');
-  const [searchUsersValue, setSearchUserValue] = useState('');
   const [users, setUsers] = useState<IUser[]>([]);
   const [pagination, setPagination] = useState({
     current_page: 1,
@@ -82,16 +83,19 @@ export default function ChatPage() {
   useEffect(() => {
     async function searchMessages() {
       try {
+        setIsSearchingMessages(true);
         setMessages([]);
         messagesRef.current = [];
         await getMessages(1);
       } catch (error) {
         console.log("An error occurred while searching messages", error);
+      } finally {
+        setIsSearchingMessages(false);
       }
     }
 
-    if(!isSelectingUser) {
-      searchMessages();
+    if(!isSelectingUser && selectedUser) {
+      debounce(searchMessages, 300)();
     }
   }, [searchMessagesValue]);
 
@@ -119,7 +123,9 @@ export default function ChatPage() {
 
   async function getMessages(page = 1, userId = selectedUser?.id) {
     if(userId) {
-      setIsGettingMessages(true);
+      if(page != 1) {
+        setIsGettingMoreMessages(true);
+      }
 
       try {
         const response = await ChatService.getMessages({ user_id: userId, page: page, search: searchMessagesValue || undefined });
@@ -135,7 +141,7 @@ export default function ChatPage() {
       } catch (error) {
         console.log("An error occurred while fetching messages", error);
       } finally {
-        setIsGettingMessages(false);
+        setIsGettingMoreMessages(false);
       }
     } 
   }
@@ -146,7 +152,7 @@ export default function ChatPage() {
         try {
           // Change states.
           setIsSelectingUser(true);
-          setIsShowingSearchMessages(false);
+          setIsShowingSearchInput(false);
           setSearchMessagesValue('');
           setMessages([]);
           messagesRef.current = [];
@@ -243,11 +249,11 @@ export default function ChatPage() {
               {!isSelectingUser ? (
                 <Fragment>
                   {selectedUser ? (
-                    <div className="flex-grow md:pl-4">
+                    <div className="flex flex-col flex-grow md:pl-4">
                       <header className="flex items-center justify-between px-4 py-2 mb-4 border-b border-gray-200 dark:border-zinc-700">
-                        <h1 className={`text font-medium ${isShowingSearchMessages ? 'hidden md:block' : ''}`}>{selectedUser.name}</h1>
+                        <h1 className={`text font-medium ${isShowingSearchInput ? 'hidden md:block' : ''}`}>{selectedUser.name}</h1>
                         <div className="flex items-center">
-                          {isShowingSearchMessages && (
+                          {isShowingSearchInput && (
                             <Input
                               name="searchMessages"
                               type="text" 
@@ -260,32 +266,40 @@ export default function ChatPage() {
                           <button 
                             className={`
                               w-10 h-10 min-w-10 min-h-10 rounded-full flex items-center justify-center transition focus:outline-none hover:bg-gray-100 dark:hover:bg-white/5
-                              ${isShowingSearchMessages ? '!bg-gray-100 dark:!bg-white/5' : ''}
+                              ${isShowingSearchInput ? '!bg-gray-100 dark:!bg-white/5' : ''}
                             `}
                             onClick={() => {
-                              setIsShowingSearchMessages(!isShowingSearchMessages)
+                              setIsShowingSearchInput(!isShowingSearchInput)
                             }}
                           >
                             <IoSearchOutline size={18} />
                           </button>
                         </div>
                       </header>
-                      <Messages 
-                        className="h-[calc(100vh-391px)]" 
-                        messages={messages}
-                        onReachTop={() => getMoreMessage()}
-                        lastMessageReceived={lastMessageReceived}
-                        lastMessageSent={lastMessageSent}
-                        selectedUser={selectedUser}
-                        isLoading={isGettingMessages}
-                      />
-                      <Prompt
-                        selectedUser={selectedUser}
-                        users={users}
-                        setUsers={setUsers}
-                        setMessages={setMessages}
-                        setLastMessageSent={setLastMessageSent}
-                      />
+                      {!isSearchingMessages ? (
+                        <>
+                          <Messages 
+                            className="h-[calc(100vh-391px)]" 
+                            messages={messages}
+                            onReachTop={() => getMoreMessage()}
+                            lastMessageReceived={lastMessageReceived}
+                            lastMessageSent={lastMessageSent}
+                            selectedUser={selectedUser}
+                            isGettingMoreMessages={isGettingMoreMessages}
+                          />
+                          <Prompt
+                            selectedUser={selectedUser}
+                            users={users}
+                            setUsers={setUsers}
+                            setMessages={setMessages}
+                            setLastMessageSent={setLastMessageSent}
+                          />
+                        </>
+                      ) : (
+                        <div className={`flex flex-grow justify-center items-center p-6`}>
+                          <Spinner className="h-5 w-5" />  
+                        </div>  
+                      )}
                     </div>
                   ) : (
                     <div className="flex-grow flex justify-center items-center p-6 md:pl-4">

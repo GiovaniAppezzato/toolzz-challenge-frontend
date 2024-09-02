@@ -60,3 +60,11 @@ export const fileToBase64 = (file: File): Promise<string | null> => {
     }
   });
 };
+
+export const debounce = (func: Function, delay: number) => {
+  let timer: NodeJS.Timeout;
+  return (...args: any[]) => {
+    clearTimeout(timer);
+    timer = setTimeout(() => func(...args), delay);
+  };
+};

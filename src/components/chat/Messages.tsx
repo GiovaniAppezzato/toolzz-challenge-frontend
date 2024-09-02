@@ -8,7 +8,7 @@ import { Avatar, Spinner } from "@/components";
 
 interface IProps {
   className?: string;
-  isLoading?: boolean;
+  isGettingMoreMessages?: boolean;
   messages: IMessage[];
   lastMessageSent: IMessage|null;
   lastMessageReceived: IMessage|null;
@@ -18,7 +18,7 @@ interface IProps {
 
 export default function Messages({ 
   className = '',
-  isLoading = false,
+  isGettingMoreMessages = false,
   messages,
   lastMessageSent,
   lastMessageReceived, 
@@ -27,7 +27,7 @@ export default function Messages({
 }: IProps) {
   const { user } = useAuth();
 
-  const { t, i18n } = useTranslation();
+  const { i18n } = useTranslation();
 
   // Force scroll to bottom when new messages are added.
   useEffect(() => {
@@ -75,7 +75,7 @@ export default function Messages({
 
   return (
     <div className={`bg-body p-4 rounded-md overflow-y-auto ${className}`} id="messages">
-      {isLoading && <div className="flex justify-center"><Spinner className="h-5 w-5" /></div>}
+      {isGettingMoreMessages && <div className="flex justify-center"><Spinner className="h-5 w-5" /></div>}
       {messages.map(message => <Message key={message.id} data={message} />)}
     </div>
   )
