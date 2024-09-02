@@ -64,7 +64,7 @@ export default function Messages({
 
     return (
       <div className={`flex gap-4 ${isMine ? 'flex-row-reverse justify-start' : ''} ${data.id != messages[messages.length - 1].id ? 'mb-4' : ''}`}>
-        {!isMine && <Avatar src={selectedUser?.photo?.name} className="!bg-white" />}
+        {!isMine && <Avatar src={selectedUser?.photo?.path} className="!bg-white" />}
         <div className={`max-w-96 bg-navbar rounded-lg p-3 flex flex-col ${isMine ? 'items-end' : 'items-start'}`}>
           <p>{data.content}</p>
           <span className="text-[10px] text-gray-500">{moment(data.created_at).locale(i18n.language).fromNow()}</span>

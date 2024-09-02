@@ -26,7 +26,7 @@ export default function DropdownHeader() {
           className="inline-flex items-center gap-2 px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md dark:hover:text-zinc-300"
           onClick={() => setIsOpen(!isOpen)}
         >
-          <Avatar src={user.photo ? user.photo.name : undefined} />
+          <Avatar src={user.photo ? user.photo.path : undefined} />
           <span className='max-w-36 truncate hidden md:block'>{user?.name}</span>
           <FaChevronDown size={12} />
         </button>

@@ -8,4 +8,5 @@ export interface IFile {
   name: string;
   mime_type: string;
   size: number;
+  path: string;
 }

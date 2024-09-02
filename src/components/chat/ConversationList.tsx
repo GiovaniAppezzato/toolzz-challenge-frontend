@@ -35,7 +35,7 @@ export default function ConversationList({
           ${selectedUser && user.id === selectedUser.id ? '!bg-gray-100 dark:!bg-white/5' : ''}
         `}
       >
-        <Avatar src={user.photo ? user.photo.name : undefined} className="mr-2" />
+        <Avatar src={user.photo ? user.photo.path : undefined} className="mr-2" />
         <div className={`flex-grow ${hasUnreadMessages ? 'max-w-[calc(100%-75px)]' : 'max-w-[calc(100%-48px)]'}`}>
           <h2 className="w-fulltext-sm font-semibold truncate">{user.name}</h2>
           <p className="w-full text-xs truncate">
