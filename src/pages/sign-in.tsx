@@ -19,8 +19,8 @@ const schema = yup.object().shape({
 export default function SignInPage() {
   const [loading, setLoading] = useState(false);
   const [values, setValues] = useState({
-    email: 'root@gmail.com',
-    password: '123456'
+    email: '',
+    password: ''
   });
 
   const { t } = useTranslation();
