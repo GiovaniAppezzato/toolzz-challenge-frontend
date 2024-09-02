@@ -77,7 +77,7 @@ export default function ChatPage() {
     loadChat();
 
     return () => {
-      EchoService.getInstance().leaveChannel(`users.${authenticatedUser.id}`);
+      EchoService?.getInstance()?.leaveChannel(`users.${authenticatedUser.id}`);
     }
   }, []);
 
@@ -111,25 +111,29 @@ export default function ChatPage() {
   }, [debouncedSearchTerm]);
 
   function addMessageReceivedListener() {
-    EchoService.getInstance()
-      .private(`users.${authenticatedUser.id}`)
-      .listen(".message.received", (e: IMessageReceived) => {
-        const { message } = e;
+    const instance = EchoService.getInstance();
 
-        updateLastMessageByUserId(message.sender_id, message);
-        
-        // Check if message is from selected user
-        if(selectedUserRef.current && message.sender_id == selectedUserRef.current.id) {
-          // Check if message is not already in the list
-          if(!messagesRef.current.find(m => m.id == message.id)) {
-            setMessages(prev => [...prev, e.message]);
-            setLastMessageReceived(message);
-            ChatService.setMessagesAsRead({ user_id: selectedUserRef.current?.id });
+    if(instance) {
+      instance
+        .private(`users.${authenticatedUser.id}`)
+        .listen(".message.received", (e: IMessageReceived) => {
+          const { message } = e;
+
+          updateLastMessageByUserId(message.sender_id, message);
+          
+          // Check if message is from selected user
+          if(selectedUserRef.current && message.sender_id == selectedUserRef.current.id) {
+            // Check if message is not already in the list
+            if(!messagesRef.current.find(m => m.id == message.id)) {
+              setMessages(prev => [...prev, e.message]);
+              setLastMessageReceived(message);
+              ChatService.setMessagesAsRead({ user_id: selectedUserRef.current?.id });
+            }
+          } else {
+            incrementUnreadMessagesCount(message.sender_id);
           }
-        } else {
-          incrementUnreadMessagesCount(message.sender_id);
-        }
-      });
+        });
+    } 
   }
 
   async function getMessages(page = 1, userId = selectedUser?.id) {

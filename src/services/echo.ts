@@ -2,7 +2,7 @@ import Pusher from "pusher-js";
 import Echo from "laravel-echo";
 
 export default class EchoService {
-  private static instance: Echo;
+  private static instance: Echo|null = null;
 
   public static initialize(accessToken?: string) {
     if(this.instance) {
@@ -26,7 +26,9 @@ export default class EchoService {
   }
 
   public static disconnect() {
-    this.instance.disconnect();
+    if(this.instance) {
+      this.instance.disconnect();
+    } 
   }
 
   public static getInstance() {
