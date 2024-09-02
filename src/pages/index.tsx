@@ -1,4 +1,4 @@
-import { Fragment, useState, useEffect, useRef } from "react";
+import { Fragment, useState, useEffect, useRef, useCallback } from "react";
 import { useRouter } from "next/router";
 import { useTranslation } from 'react-i18next';
 import { IoSearchOutline } from "react-icons/io5";
@@ -23,12 +23,14 @@ export default function ChatPage() {
   const [isShowingSearchInput, setIsShowingSearchInput] = useState(false);
   const [lastMessageReceived, setLastMessageReceived] = useState<IMessage|null>(null);
   const [lastMessageSent, setLastMessageSent] = useState<IMessage|null>(null);
-  const [searchMessagesValue, setSearchMessagesValue] = useState('');
   const [users, setUsers] = useState<IUser[]>([]);
   const [pagination, setPagination] = useState({
     current_page: 1,
     last_page: 1,
   });
+
+  const [searchMessagesValue, setSearchMessagesValue] = useState('');
+  const [debouncedSearchTerm, setDebouncedSearchTerm] = useState(searchMessagesValue);
 
   const [messages, setMessages] = useState<IMessage[]>([]);
   const messagesRef = useRef<IMessage[]>([]);
@@ -80,6 +82,16 @@ export default function ChatPage() {
   }, []);
 
   useEffect(() => {
+    const handler = setTimeout(() => {
+      setDebouncedSearchTerm(searchMessagesValue);
+    }, 500);
+
+    return () => {
+      clearTimeout(handler);
+    };
+  }, [searchMessagesValue]);
+
+  useEffect(() => {
     async function searchMessages() {
       try {
         setIsSearchingMessages(true);
@@ -96,7 +108,7 @@ export default function ChatPage() {
     if(!isSelectingUser && selectedUser) {
       searchMessages();
     }
-  }, [searchMessagesValue]);
+  }, [debouncedSearchTerm]);
 
   function addMessageReceivedListener() {
     EchoService.getInstance()
