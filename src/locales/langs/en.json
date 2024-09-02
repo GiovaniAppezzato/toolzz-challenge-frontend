@@ -14,7 +14,8 @@
         "noAccount": "Don't have an account?",
         "doSignUp": "Create one",
         "access": "Sign In",
-        "invalidCredentials": "Invalid credentials"
+        "invalidCredentials": "Invalid credentials",
+        "defaultToast": "Use e-mail root@gmail.com and password 123456 to use the default user."
       },
       "signUp": {
         "title": "Register Your Account",

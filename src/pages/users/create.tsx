@@ -46,6 +46,8 @@ export default function CreateUserPage() {
       } catch (error) {
         if (error instanceof yup.ValidationError) {
           ToastService.error(`${error.params?.label}: ${error.message}`);
+        } else {
+          ToastService.error(t("errors.default.message"));
         }
       } finally {
         setIsCreating(false);

@@ -26,4 +26,8 @@ export default class ToastService {
   static error(message: string) {
     toastify.error(message, { theme: "colored" });
   }
+
+    static dark(message: string) {
+      toastify.dark(message, { autoClose: 15000 });
+    }
 }

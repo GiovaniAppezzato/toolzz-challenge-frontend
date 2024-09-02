@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Link from 'next/link'
 import * as yup from "yup";
 import { useTranslation } from 'react-i18next';
@@ -25,6 +25,10 @@ export default function SignInPage() {
 
   const { t } = useTranslation();
   const { signIn } = useAuth();
+
+  useEffect(() => {
+    ToastService.dark(t("pages.signIn.defaultToast"));
+  }, [])
 
   async function handleSubmit() {
     if(!loading) {

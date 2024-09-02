@@ -14,7 +14,8 @@
         "noAccount": "Não tem conta?",
         "doSignUp": "Crie uma",
         "access": "Acessar",
-        "invalidCredentials": "Credenciais inválidas"
+        "invalidCredentials": "Credenciais inválidas",
+        "defaultToast": "Utilize o e-mail root@gmail.com e a senha 123456 para utilizar o usuário padrão do sistema."
       },
       "signUp": {
         "title": "Cadastre sua conta",
